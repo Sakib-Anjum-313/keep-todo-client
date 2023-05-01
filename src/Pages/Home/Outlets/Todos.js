@@ -23,6 +23,7 @@ const Todos = () => {
         });
 
         setAllTodos(prevTodos);
+        setReloadTodo(!reloadTodo);
         console.log(prevTodos);
         console.log(allTodos);
       });

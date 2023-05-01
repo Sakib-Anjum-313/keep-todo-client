@@ -6,6 +6,7 @@ import TodoMenu from "./TodoMenu";
 
 const Home = () => {
   const [reloadTodo, setReloadTodo] = useState(false);
+  const [pendingTodos, setPendingTodos] = useState(0);
   const [allTodos, setAllTodos] = useState([]);
 
   useEffect(() => {
@@ -14,6 +15,10 @@ const Home = () => {
       .then((data) => {
         console.log("Inside useEffect");
         setAllTodos(data);
+        const pendingItems = data.filter((item) => item.done === false);
+        console.log(pendingItems);
+        setPendingTodos(pendingItems.length);
+
       });
   }, [reloadTodo]);
 
@@ -24,9 +29,15 @@ const Home = () => {
         setReloadTodo={setReloadTodo}
         allTodos={allTodos}
       ></AddNewTodo>
-      <TodoMenu></TodoMenu>
+      <TodoMenu pendingTodos={pendingTodos}></TodoMenu>
       <Outlet
-        context={[allTodos, setAllTodos, reloadTodo, setReloadTodo]}
+        context={[
+          allTodos,
+          setAllTodos,
+          reloadTodo,
+          setReloadTodo,
+          setPendingTodos,
+        ]}
       ></Outlet>
     </div>
   );

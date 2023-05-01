@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const TodoMenu = () => {
+const TodoMenu = ({ pendingTodos }) => {
   const [allTodoActive, setAllTodoActive] = useState(true);
   const [activeTodo, setActiveTodo] = useState(false);
   const [doneTodo, setDoneTodo] = useState(false);
 
   return (
     <div className=" mt-4 relative left-64 ">
-      <h1>05 pending Todos...</h1>
+      <h1> {pendingTodos} pending Todos...</h1>
       <div className=" mt-4">
         <Link
           onClick={() => {
