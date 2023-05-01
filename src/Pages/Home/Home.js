@@ -1,38 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+import AddNewTodo from "./AddNewTodo";
+import "./Home.css";
+import TodoMenu from "./TodoMenu";
 
 const Home = () => {
-  const [text, setText] = useState();
+  const [reloadTodo, setReloadTodo] = useState(false);
+  const [allTodos, setAllTodos] = useState([]);
 
-  const onFormSubmit = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const newToDoValue = form.newToDo.value;
-    setText(newToDoValue);
+  useEffect(() => {
+    fetch("http://localhost:5000/getAllTodos")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Inside useEffect");
+        setAllTodos(data);
+      });
+  }, [reloadTodo]);
 
-    console.log(newToDoValue);
-    form.reset();
-  };
-
-  const onInputChange = (event) => {
-    console.log(event.target.value);
-  };
   return (
-    <div>
-      <div className=" mt-4 relative top-36">
-        <form
-          onSubmit={onFormSubmit}
-          className="flex justify-center items-center "
-        >
-          <input
-            onChange={onInputChange}
-            name="newToDo"
-            type="text"
-            placeholder="Enter A New Todo..."
-            className="input input-bordered input-warning w-full max-w-xs drop-shadow-md "
-          />
-        </form>
-        <h1>{text}</h1>
-      </div>
+    <div className="border border-2 relative top-36 ">
+      <AddNewTodo
+        reloadTodo={reloadTodo}
+        setReloadTodo={setReloadTodo}
+        allTodos={allTodos}
+      ></AddNewTodo>
+      <TodoMenu></TodoMenu>
+      <Outlet
+        context={[allTodos, setAllTodos, reloadTodo, setReloadTodo]}
+      ></Outlet>
     </div>
   );
 };
