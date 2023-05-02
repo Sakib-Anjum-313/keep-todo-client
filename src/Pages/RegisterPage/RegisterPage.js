@@ -21,16 +21,16 @@ const RegisterPage = () => {
       .then((result) => {
         const user = result.user;
         setError("");
-        
+
         // alert("Please verify your email address.");
         form.reset();
-        navigate("/Home");
+        navigate("/");
         // console.log(user);
       })
       .catch((error) => {
         setError(error.message);
       });
-       form.reset();
+    form.reset();
   };
   const handleUpdateProfile = (name, photo) => {
     const profile = {
@@ -42,8 +42,6 @@ const RegisterPage = () => {
       .catch((error) => {
         setError(error.message);
       });
-
-     
   };
 
   const handleEmailVerification = () => {
@@ -67,7 +65,6 @@ const RegisterPage = () => {
                 assumenda excepturi exercitationem quasi. In deleniti eaque aut
                 repudiandae et a id nisi.
               </p>
-              
             </div>
             <form
               onSubmit={handleSubmit}
@@ -91,15 +88,12 @@ const RegisterPage = () => {
                   </label>
                   <input
                     name="password"
-                    type="text"
+                    type="password"
                     placeholder="password"
                     className="input input-bordered"
                   />
                   <label className="label">
-                    <Link
-                      to={"/"}
-                      className="label-text-alt link link-hover"
-                    >
+                    <Link to={"/login"} className="label-text-alt link link-hover">
                       Already Registered?
                     </Link>
                   </label>

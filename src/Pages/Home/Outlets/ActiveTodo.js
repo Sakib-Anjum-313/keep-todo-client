@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthProvider";
 import TodoCard from "./TodoCard";
 
 const ActiveTodo = () => {
   const [activeTodos, setActiveTodo] = useState([]);
   const [allTodos, setAllTodos, reloadTodo, setReloadTodo] =
     useOutletContext();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:5000/activeTodos")
+    fetch(`http://localhost:5000/activeTodos/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Inside useEffect");
@@ -18,7 +20,7 @@ const ActiveTodo = () => {
 
   const toggleTodoDone = (id) => {
     console.log("toggled");
-    fetch(`http://localhost:5000/getAllTodos/${id}`)
+    fetch(`http://localhost:5000/toggleATodo/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

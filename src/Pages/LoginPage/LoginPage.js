@@ -18,7 +18,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || "/home";
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogIn = (event) => {
     event.preventDefault();
@@ -56,7 +56,6 @@ const LoginPage = () => {
               <p className="font-bold">For Quick Test:</p>
               <p className="mt-2">Email: test@gmail.com</p>
               <p className="mt-1">Password: 123456</p>
-              
             </div>
             <form
               onSubmit={handleLogIn}
@@ -80,7 +79,7 @@ const LoginPage = () => {
                   </label>
                   <input
                     name="password"
-                    type="text"
+                    type="password"
                     placeholder="password"
                     className="input input-bordered"
                   />

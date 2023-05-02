@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const AddNewTodo = ({ reloadTodo, setReloadTodo, allTodos }) => {
   // console.log(allTodos);
+  const {user} = useContext(AuthContext)
 
   const onFormSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const newToDoValue = form.newToDo.value;
     const data = {
+      email: `${user.email}`,
       newTodo: `${newToDoValue}`,
     };
 
-    fetch("http://localhost:5000/addNewTodo", {
+    fetch(`http://localhost:5000/addNewTodo/${user.email}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +37,7 @@ const AddNewTodo = ({ reloadTodo, setReloadTodo, allTodos }) => {
   // };
 
   return (
-    <div className="border border-2 relative left-64 ">
+    <div className="relative left-64 ">
       <form onSubmit={onFormSubmit} className=" ">
         <input
           name="newToDo"

@@ -12,7 +12,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/login",
       element: <LoginPage></LoginPage>,
     },
     {
@@ -20,7 +20,7 @@ function App() {
       element: <RegisterPage></RegisterPage>,
     },
     {
-      path: "/Home",
+      path: "/",
       element: (
         <PrivateRoute>
           <Home></Home>
@@ -28,7 +28,7 @@ function App() {
       ),
       children: [
         {
-          path: "/Home",
+          path: "/",
           element: <Todos></Todos>,
         },
         {

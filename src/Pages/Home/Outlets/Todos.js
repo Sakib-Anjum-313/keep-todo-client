@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useOutletContext } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthProvider.js";
 import TodoCard from "./TodoCard.js";
 
 const Todos = () => {
   // console.log(allTodos);
+  const { user } = useContext(AuthContext);
 
   const [allTodos, setAllTodos, reloadTodo, setReloadTodo] = useOutletContext();
 
 
   const toggleTodoDone = (id) => {
     console.log("toggled");
-    fetch(`http://localhost:5000/getAllTodos/${id}`)
+    fetch(`http://localhost:5000/toggleATodo/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -1,10 +1,12 @@
 import { faDeleteLeft, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const TodoCard = ({ todo, toggleTodoDone, reloadTodo, setReloadTodo }) => {
   const [editing, setEditing] = useState(false);
   const [todoText, setTodoText] = useState(todo.data);
+  const { user } = useContext(AuthContext);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
