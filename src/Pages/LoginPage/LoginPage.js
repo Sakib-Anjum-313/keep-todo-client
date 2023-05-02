@@ -18,7 +18,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/home";
 
   const handleLogIn = (event) => {
     event.preventDefault();
@@ -53,9 +53,10 @@ const LoginPage = () => {
                 assumenda excepturi exercitationem quasi. In deleniti eaque aut
                 repudiandae et a id nisi.
               </p>
-              <Link to={"/Home"}>
-                <button className="btn btn-warning">home</button>
-              </Link>
+              <p className="font-bold">For Quick Test:</p>
+              <p className="mt-2">Email: test@gmail.com</p>
+              <p className="mt-1">Password: 123456</p>
+              
             </div>
             <form
               onSubmit={handleLogIn}

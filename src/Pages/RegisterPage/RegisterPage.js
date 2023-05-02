@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthProvider";
 import Header from "../Header/Header";
 
@@ -14,7 +13,6 @@ const RegisterPage = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
-    const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
     // console.log(name, photo, email, password);
@@ -23,16 +21,16 @@ const RegisterPage = () => {
       .then((result) => {
         const user = result.user;
         setError("");
-        handleUpdateProfile(name, photo);
-        handleEmailVerification();
-        toast.success("Please verify your email address.");
+        
+        // alert("Please verify your email address.");
         form.reset();
-        navigate("/login");
+        navigate("/Home");
         // console.log(user);
       })
       .catch((error) => {
         setError(error.message);
       });
+       form.reset();
   };
   const handleUpdateProfile = (name, photo) => {
     const profile = {
@@ -44,6 +42,8 @@ const RegisterPage = () => {
       .catch((error) => {
         setError(error.message);
       });
+
+     
   };
 
   const handleEmailVerification = () => {
@@ -61,15 +61,13 @@ const RegisterPage = () => {
         <div className="hero min-h-screen bg-base-200">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Login now!</h1>
+              <h1 className="text-5xl font-bold">Register now!</h1>
               <p className="py-6">
                 Provident cupiditate voluptatem et in. Quaerat fugiat ut
                 assumenda excepturi exercitationem quasi. In deleniti eaque aut
                 repudiandae et a id nisi.
               </p>
-              <Link to={"/Home"}>
-                <button className="btn btn-warning">home</button>
-              </Link>
+              
             </div>
             <form
               onSubmit={handleSubmit}
@@ -99,15 +97,15 @@ const RegisterPage = () => {
                   />
                   <label className="label">
                     <Link
-                      to={"/register"}
+                      to={"/"}
                       className="label-text-alt link link-hover"
                     >
-                      Not Registered?
+                      Already Registered?
                     </Link>
                   </label>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Login</button>
+                  <button className="btn btn-primary">Register</button>
                 </div>
               </div>
             </form>

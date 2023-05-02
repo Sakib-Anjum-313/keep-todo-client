@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
 import logo from "../../assets/logo/keep-notes-logo.png";
 
 const Header = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+
+  const logOut = () => {
+    logOutUser()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  }
+
+
   return (
     <div className=" shadow-xl">
       <div className="navbar bg-base-100">
@@ -65,16 +79,28 @@ const Header = () => {
               Keep <span className="ml-1 text-amber-500">ToDo's</span>
             </button>
           </Link>
-          
-
-        </div>
-        <div className="my-1">
-          <button className="btn btn-outline btn-info">Login</button>
-          <button className="btn btn-outline btn-warning ml-3">Register</button>
         </div>
 
         <div className="navbar-end">
-          <button className="btn mr-3">LogOut</button>
+          {user ? (
+            <div className="my-1 mr-4 flex justify-center items-center">
+              <p className="mr-3 font-semibold">{user.email}</p>
+              <button onClick={logOut} className=" btn btn-outline btn-info">
+                LogOut
+              </button>
+            </div>
+          ) : (
+            <div className="my-1 mr-4">
+              <Link to={"/"}>
+                <button className="btn btn-outline btn-info">Login</button>
+              </Link>
+              <Link to={"/register"}>
+                <button className="btn btn-outline btn-warning ml-3">
+                  Register
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
