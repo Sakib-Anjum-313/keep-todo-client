@@ -38,7 +38,7 @@ const TodoCard = ({ todo, toggleTodoDone, reloadTodo, setReloadTodo }) => {
 
 
   return (
-    <button className="btn text-start mt-2 w-2/4 rounded-md btn-active btn-ghost">
+    <button className=" no-animation btn text-start mt-2 w-2/4 rounded-md btn-active btn-ghost">
       <div className="flex justify-between  w-full">
         <div
           className="w-full"
@@ -73,7 +73,7 @@ const TodoCard = ({ todo, toggleTodoDone, reloadTodo, setReloadTodo }) => {
             onClick={() => setEditing(!editing)}
             className="ml-4 hover:text-amber-400 "
           >
-            <FontAwesomeIcon icon={faPenToSquare} size="xl" />
+            <FontAwesomeIcon className="" icon={faPenToSquare} size="xl" />
           </div>
         </div>
       </div>

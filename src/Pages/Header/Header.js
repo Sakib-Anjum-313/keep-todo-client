@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo/keep-notes-logo.png";
 
 const Header = () => {
@@ -58,10 +59,14 @@ const Header = () => {
             </ul>
           </div>
 
-          <button className="ml-0 btn btn-ghost normal-case text-xl">
-            <img className="w-10 mr-1 rounded-full" src={logo} alt="" />
-            Keep <span className="ml-1 text-amber-500">ToDo's</span>
-          </button>
+          <Link to={"/"}>
+            <button className="ml-0 btn btn-ghost normal-case text-xl">
+              <img className="w-10 mr-1 rounded-full" src={logo} alt="" />
+              Keep <span className="ml-1 text-amber-500">ToDo's</span>
+            </button>
+          </Link>
+          
+
         </div>
         <div className="my-1">
           <button className="btn btn-outline btn-info">Login</button>
